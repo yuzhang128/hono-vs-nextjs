@@ -465,7 +465,7 @@ export default function App() {
           </Section>
 
           <Section title="Detailed Comparison">
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-2">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -480,6 +480,7 @@ export default function App() {
                 </button>
               ))}
             </div>
+            <p className="text-[#606060] text-xs mb-4">Click tabs to switch comparison topic</p>
 
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <div className="rounded-lg p-3 bg-[#252526] border border-[#3c3c3c]">
