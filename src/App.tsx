@@ -459,6 +459,7 @@ export default function App() {
                 <div className="text-[#808080] text-xs">Version</div>
               </div>
             </div>
+            <p className="text-[#606060] text-xs mt-2">Runs on server only — adds zero bundle size to your pages</p>
           </Section>
 
           <Section title="Detailed Comparison">
