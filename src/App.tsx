@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { CodeBlock } from './components/CodeBlock'
-import { FileTree } from './components/FileTree'
 
 const nextjsFileTree = `app/
 ├── api/
@@ -349,9 +348,7 @@ const comparisons: Record<TabType, { title: string; nextjs: string; hono: string
   },
 }
 
-type BlockItem = 
-  | { type: 'tree'; tree: string; title: string }
-  | { type: 'code'; code: string; lang: string; title: string }
+type BlockItem = { code: string; lang: string; title: string }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -379,28 +376,28 @@ export default function App() {
     switch (activeTab) {
       case 'structure':
         return [
-          { type: 'tree', tree: nextjsFileTree, title: 'Next.js Route Handlers' },
-          { type: 'tree', tree: honoFileTree, title: 'Hono Catch-All Handler' },
+          { code: nextjsFileTree, lang: 'ts', title: 'Next.js Route Handlers' },
+          { code: honoFileTree, lang: 'ts', title: 'Hono Catch-All Handler' },
         ]
       case 'routing':
         return [
-          { type: 'code', code: nextjsRoutingCode, lang: 'typescript', title: 'Next.js File-Based Routing' },
-          { type: 'code', code: honoRoutingCode, lang: 'typescript', title: 'Hono Programmatic Routing' },
+          { code: nextjsRoutingCode, lang: 'typescript', title: 'Next.js File-Based Routing' },
+          { code: honoRoutingCode, lang: 'typescript', title: 'Hono Programmatic Routing' },
         ]
       case 'auth':
         return [
-          { type: 'code', code: nextjsAuthCode, lang: 'typescript', title: 'Next.js (Manual Per-Route)' },
-          { type: 'code', code: honoAuthCode, lang: 'typescript', title: 'Hono (Middleware Chain)' },
+          { code: nextjsAuthCode, lang: 'typescript', title: 'Next.js (Manual Per-Route)' },
+          { code: honoAuthCode, lang: 'typescript', title: 'Hono (Middleware Chain)' },
         ]
       case 'error':
         return [
-          { type: 'code', code: nextjsErrorCode, lang: 'typescript', title: 'Next.js (Inconsistent)' },
-          { type: 'code', code: honoErrorCode, lang: 'typescript', title: 'Hono (Global Handler)' },
+          { code: nextjsErrorCode, lang: 'typescript', title: 'Next.js (Inconsistent)' },
+          { code: honoErrorCode, lang: 'typescript', title: 'Hono (Global Handler)' },
         ]
       case 'middleware':
         return [
-          { type: 'code', code: nextjsMiddlewareCode, lang: 'typescript', title: 'Next.js Middleware' },
-          { type: 'code', code: honoMiddlewareCode, lang: 'typescript', title: 'Hono Middleware' },
+          { code: nextjsMiddlewareCode, lang: 'typescript', title: 'Next.js Middleware' },
+          { code: honoMiddlewareCode, lang: 'typescript', title: 'Hono Middleware' },
         ]
       default:
         return []
@@ -495,9 +492,7 @@ export default function App() {
 
             <div className="grid lg:grid-cols-2 gap-4">
               {blocks.map((block, index) => (
-                block.type === 'tree' 
-                  ? <FileTree key={index} tree={block.tree} title={block.title} />
-                  : <CodeBlock key={index} code={block.code} lang={block.lang} title={block.title} />
+                <CodeBlock key={index} code={block.code} lang={block.lang} title={block.title} />
               ))}
             </div>
           </Section>
